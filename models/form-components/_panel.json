@@ -11,7 +11,8 @@
                             "jcr:title": "Panel",
                             "fieldType": "panel",
                             "enabled": true,
-                            "visible": true
+                            "visible": true,
+                            "minOccur": 1
                         }
                     }
                 }
@@ -42,18 +43,19 @@
                             "valueType": "boolean"
                         },
                         {
-                            "component": "number",
+                            "component": "text",
                             "name": "minOccur",
                             "label": "Minimum repetitions",
                             "valueType": "number",
                             "description": "Minimum number of times the panel appears on the form"
                         },
                         {
-                            "component": "number",
+                            "component": "text",
                             "name": "maxOccur",
                             "label": "Maximum repetitions",
                             "valueType": "number",
-                            "description": "Maximum number of times the panel can appear on the form"
+                            "description": "Maximum number of times the panel can appear on the form",
+                            "placeholder": "No Limit"
                         }
                     ]
                 },
