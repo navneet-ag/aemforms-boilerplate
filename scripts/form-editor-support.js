@@ -20,7 +20,7 @@
 import decorate, { generateFormRendition } from '../blocks/form/form.js';
 import { loadCSS } from './aem.js';
 
-window.currentMode = 'preview';
+window.currentMode = 'edit';
 let activeWizardStep;
 const OOTBViewTypeComponentsWithoutModel = ['wizard', 'toggleable-link', 'modal'];
 
