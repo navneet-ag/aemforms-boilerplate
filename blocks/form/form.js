@@ -160,6 +160,11 @@ function createFieldSet(fd) {
     setConstraints(wrapper, fd);
     wrapper.dataset.repeatable = true;
     wrapper.dataset.index = fd.index || 0;
+    Object.keys(fd?.properties)?.forEach((key) => {
+      if (!key.startsWith('fd:')) {
+        wrapper.dataset[key] = fd.properties[key];
+      }
+    });
   }
   return wrapper;
 }

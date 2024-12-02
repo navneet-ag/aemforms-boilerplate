@@ -42,23 +42,6 @@
                             "valueType": "boolean"
                         },
                         {
-                            "component": "select",
-                            "name": "variant",
-                            "label": "Variant",
-                            "options": [
-                                {
-                                    "name": "Default (No action items)",
-                                    "value": "default"
-                                },
-                                {
-                                    "name": "Add and Delete Buttons",
-                                    "value": "addAndDeleteButtons"
-                                }
-                            ],
-                            "value": "addAndDeleteButtons",
-                            "condition": { "===": [{"var" : "repeatable"}, true] }
-                        },
-                        {
                             "component": "number",
                             "name": "minOccur",
                             "label": "Minimum repetitions",
@@ -73,18 +56,41 @@
                             "description": "Maximum number of times the panel can appear on the form"
                         },
                         {
+                            "component": "select",
+                            "name": "variant",
+                            "label": "Variant",
+                            "options": [
+                                {
+                                    "name": "No Actions",
+                                    "value": "noButtons"
+                                },
+                                {
+                                    "name": "Add & Remove All",
+                                    "value": "addRemoveAll"
+                                },
+                                {
+                                    "name": "Add & Remove Last",
+                                    "value": "addRemoveLast"
+                                }
+                            ],
+                            "value": "addRemoveAll",
+                            "condition": { "===": [{"var" : "repeatable"}, true] }
+                        },
+                        {
                             "component": "text",
                             "name": "repeatAddButtonLabel",
                             "label": "Add Button Label",
                             "valueType": "string",
-                            "condition": { "===": [{"var" : "variant"}, "addAndDeleteButtons"] }
+                            "value": "Add",
+                            "condition": { "!=": [{"var" : "variant"}, "noButtons"] }
                         },
                         {
                             "component": "text",
                             "name": "repeatDeleteButtonLabel",
                             "label": "Delete Button Label",
                             "valueType": "string",
-                            "condition": { "===": [{"var" : "variant"}, "addAndDeleteButtons"] }
+                            "value": "Delete",
+                            "condition": { "!=": [{"var" : "variant"}, "noButtons"] }
                         }
                     ]
                 },
