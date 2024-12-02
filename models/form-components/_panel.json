@@ -47,15 +47,15 @@
                             "label": "Variant",
                             "options": [
                                 {
-                                    "name": "default",
-                                    "value": "Default (No action items)"
+                                    "name": "Default (No action items)",
+                                    "value": "default"
                                 },
                                 {
-                                    "name": "addAndDeleteButtons",
-                                    "value": "Add and Delete Buttons"
+                                    "name": "Add and Delete Buttons",
+                                    "value": "addAndDeleteButtons"
                                 }
                             ],
-                            "value": "Add and Delete Buttons",
+                            "value": "addAndDeleteButtons",
                             "condition": { "===": [{"var" : "repeatable"}, true] }
                         },
                         {
@@ -77,14 +77,14 @@
                             "name": "repeatAddButtonLabel",
                             "label": "Add Button Label",
                             "valueType": "string",
-                            "condition": { "===": [{"var" : "repeatable"}, true] }
+                            "condition": { "===": [{"var" : "variant"}, "addAndDeleteButtons"] }
                         },
                         {
                             "component": "text",
                             "name": "repeatDeleteButtonLabel",
                             "label": "Delete Button Label",
                             "valueType": "string",
-                            "condition": { "===": [{"var" : "repeatable"}, true] }
+                            "condition": { "===": [{"var" : "variant"}, "addAndDeleteButtons"] }
                         }
                     ]
                 },
