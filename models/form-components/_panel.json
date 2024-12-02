@@ -42,6 +42,23 @@
                             "valueType": "boolean"
                         },
                         {
+                            "component": "select",
+                            "name": "variant",
+                            "label": "Variant",
+                            "options": [
+                                {
+                                    "name": "default",
+                                    "value": "Default (No action items)"
+                                },
+                                {
+                                    "name": "addAndDeleteButtons",
+                                    "value": "Add and Delete Buttons"
+                                }
+                            ],
+                            "value": "Add and Delete Buttons",
+                            "condition": { "===": [{"var" : "repeatable"}, true] }
+                        },
+                        {
                             "component": "number",
                             "name": "minOccur",
                             "label": "Minimum repetitions",
@@ -54,6 +71,20 @@
                             "label": "Maximum repetitions",
                             "valueType": "number",
                             "description": "Maximum number of times the panel can appear on the form"
+                        },
+                        {
+                            "component": "text",
+                            "name": "repeatAddButtonLabel",
+                            "label": "Add Button Label",
+                            "valueType": "string",
+                            "condition": { "===": [{"var" : "repeatable"}, true] }
+                        },
+                        {
+                            "component": "text",
+                            "name": "repeatDeleteButtonLabel",
+                            "label": "Delete Button Label",
+                            "valueType": "string",
+                            "condition": { "===": [{"var" : "repeatable"}, true] }
                         }
                     ]
                 },
