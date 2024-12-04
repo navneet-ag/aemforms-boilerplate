@@ -38,7 +38,7 @@ function createButton(label, icon) {
   return button;
 }
 
-function insertRemoveButton(fieldset, wrapper, form) {
+export function insertRemoveButton(fieldset, wrapper, form) {
   const label = fieldset.dataset?.repeatDeleteButtonLabel || 'Remove';
   const removeButton = createButton(label, 'remove');
   removeButton.addEventListener('click', () => {
@@ -56,7 +56,7 @@ function insertRemoveButton(fieldset, wrapper, form) {
   fieldset.append(removeButton);
 }
 
-const add = (wrapper, form, actions) => (e) => {
+export const add = (wrapper, form, actions) => (e) => {
   const fieldset = wrapper['#repeat-template'];
   const max = wrapper.getAttribute('data-max');
   const min = wrapper.getAttribute('data-min');
@@ -88,19 +88,29 @@ function getInstances(el) {
   return siblings;
 }
 
+export function insertAddButton(wrapper, form) {
+  const actions = document.createElement('div');
+  actions.className = 'repeat-actions';
+  const addLabel = wrapper?.dataset?.repeatAddButtonLabel || 'Add';
+  const addButton = createButton(addLabel, 'add');
+  addButton.addEventListener('click', add(wrapper, form, actions));
+  actions.appendChild(addButton);
+  wrapper.append(actions);
+}
+
 export default function transferRepeatableDOM(form) {
   form.querySelectorAll('[data-repeatable="true"][data-index="0"]').forEach((el) => {
     const instances = getInstances(el);
-    const actions = document.createElement('div');
     const wrapper = document.createElement('div');
     wrapper.dataset.min = el.dataset.min || 0;
     wrapper.dataset.max = el.dataset.max;
     wrapper.dataset.variant = el.dataset.variant || 'addRemoveAll';
+    wrapper.dataset.repeatAddButtonLabel = el.dataset.repeatAddButtonLabel;
+    wrapper.dataset.repeatDeleteButtonLabel = el.dataset.repeatDeleteButtonLabel;
     el.insertAdjacentElement('beforebegin', wrapper);
     wrapper.append(...instances);
-    const addLabel = el.dataset?.repeatAddButtonLabel || 'Add';
-    const addButton = createButton(addLabel, 'add');
-    addButton.addEventListener('click', add(wrapper, form, actions));
+    wrapper.querySelector('.item-remove')?.remove();
+    wrapper.querySelector('.repeat-actions')?.remove();
     const cloneNode = el.cloneNode(true);
     cloneNode.removeAttribute('id');
     wrapper['#repeat-template'] = cloneNode;
@@ -111,9 +121,7 @@ export default function transferRepeatableDOM(form) {
       update(el, 0, wrapper['#repeat-template-label']);
       el.setAttribute('data-index', 0);
     }
-    actions.className = 'repeat-actions';
-    actions.appendChild(addButton);
-    wrapper.append(actions);
+    insertAddButton(wrapper, form);
     wrapper.className = 'repeat-wrapper';
   });
 }
