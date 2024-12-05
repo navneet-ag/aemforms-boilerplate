@@ -269,23 +269,22 @@ main .file-wrapper .field-dropregion {
 /* Repeatable Styling */
 main .form form .repeat-actions {
     grid-column: span 12;
+    order: 2;
 }
 
 main .form form .item-remove,
 main .form form .item-add {
     overflow: unset;
-    display: none;
 }
 
 main .form form .item-remove {
     justify-self: end;
     grid-column: span 12;
+    order: 1;
 }
 
-main .form form div[data-variant="addRemoveAll"] .item-add,
-main .form form div[data-variant="addRemoveLast"] .item-add,
-main .form form div[data-variant="addRemoveAll"] .item-remove, 
-main .form form div[data-variant="addRemoveLast"] fieldset:last-of-type .item-remove {
+main .form form div[data-variant="addRemoveButtons"] .item-add,
+main .form form div[data-variant="addRemoveButtons"] .item-remove {
     display: block;
 }
 

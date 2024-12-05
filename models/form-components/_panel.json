@@ -65,15 +65,11 @@
                                     "value": "noButtons"
                                 },
                                 {
-                                    "name": "Add & Remove on All",
-                                    "value": "addRemoveAll"
-                                },
-                                {
-                                    "name": "Add & Remove Last",
-                                    "value": "addRemoveLast"
+                                    "name": "Add & Remove Buttons",
+                                    "value": "addRemoveButtons"
                                 }
                             ],
-                            "value": "addRemoveAll",
+                            "value": "addRemoveButtons",
                             "condition": { "===": [{"var" : "repeatable"}, true] }
                         },
                         {
@@ -82,7 +78,7 @@
                             "label": "Add Button Label",
                             "valueType": "string",
                             "value": "Add",
-                            "condition": { "!=": [{"var" : "variant"}, "noButtons"] }
+                            "condition": { "===": [{"var" : "variant"}, "addRemoveButtons"] }
                         },
                         {
                             "component": "text",
@@ -90,7 +86,7 @@
                             "label": "Delete Button Label",
                             "valueType": "string",
                             "value": "Delete",
-                            "condition": { "!=": [{"var" : "variant"}, "noButtons"] }
+                            "condition": { "===": [{"var" : "variant"}, "addRemoveButtons"] }
                         }
                     ]
                 },

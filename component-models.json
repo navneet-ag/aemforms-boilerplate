@@ -2682,15 +2682,11 @@
                 "value": "noButtons"
               },
               {
-                "name": "Add & Remove on All",
-                "value": "addRemoveAll"
-              },
-              {
-                "name": "Add & Remove Last",
-                "value": "addRemoveLast"
+                "name": "Add & Remove Buttons",
+                "value": "addRemoveButtons"
               }
             ],
-            "value": "addRemoveAll",
+            "value": "addRemoveButtons",
             "condition": {
               "===": [
                 {
@@ -2707,11 +2703,11 @@
             "valueType": "string",
             "value": "Add",
             "condition": {
-              "!=": [
+              "===": [
                 {
                   "var": "variant"
                 },
-                "noButtons"
+                "addRemoveButtons"
               ]
             }
           },
@@ -2722,11 +2718,11 @@
             "valueType": "string",
             "value": "Delete",
             "condition": {
-              "!=": [
+              "===": [
                 {
                   "var": "variant"
                 },
-                "noButtons"
+                "addRemoveButtons"
               ]
             }
           }

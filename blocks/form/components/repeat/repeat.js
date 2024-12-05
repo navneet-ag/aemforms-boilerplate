@@ -104,9 +104,9 @@ export default function transferRepeatableDOM(form) {
     const wrapper = document.createElement('div');
     wrapper.dataset.min = el.dataset.min || 0;
     wrapper.dataset.max = el.dataset.max;
-    wrapper.dataset.variant = el.dataset.variant || 'addRemoveAll';
-    wrapper.dataset.repeatAddButtonLabel = el.dataset.repeatAddButtonLabel;
-    wrapper.dataset.repeatDeleteButtonLabel = el.dataset.repeatDeleteButtonLabel;
+    wrapper.dataset.variant = el.dataset.variant || 'addRemoveButtons';
+    wrapper.dataset.repeatAddButtonLabel = el.dataset?.repeatAddButtonLabel ? el.dataset.repeatAddButtonLabel : 'Add';
+    wrapper.dataset.repeatDeleteButtonLabel = el.dataset?.repeatDeleteButtonLabel ? el.dataset.repeatDeleteButtonLabel : 'Remove';
     el.insertAdjacentElement('beforebegin', wrapper);
     wrapper.append(...instances);
     wrapper.querySelector('.item-remove')?.remove();
