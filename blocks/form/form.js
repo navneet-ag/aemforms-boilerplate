@@ -149,7 +149,7 @@ function createLegend(fd) {
   return createLabel(fd, 'legend');
 }
 
-function createRepetablePanel(wrapper, fd) {
+function createRepeatablePanel(wrapper, fd) {
   setConstraints(wrapper, fd);
   wrapper.dataset.repeatable = true;
   wrapper.dataset.index = fd.index || 0;
@@ -174,7 +174,7 @@ function createFieldSet(fd) {
     wrapper.classList.add('panel-wrapper');
   }
   if (fd.repeatable === true) {
-    createRepetablePanel(wrapper, fd);
+    createRepeatablePanel(wrapper, fd);
   }
   return wrapper;
 }
