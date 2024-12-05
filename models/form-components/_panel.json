@@ -43,18 +43,18 @@
                             "valueType": "boolean"
                         },
                         {
-                            "component": "text",
+                            "component": "number",
                             "name": "minOccur",
                             "label": "Minimum repetitions",
                             "valueType": "number",
                             "description": "Minimum number of times the panel appears on the form"
                         },
                         {
-                            "component": "text",
+                            "component": "number",
                             "name": "maxOccur",
                             "label": "Maximum repetitions",
                             "valueType": "number",
-                            "description": "Maximum number of times the panel can appear on the form",
+                            "description": "Maximum number of times the panel can appear on the form, an empty value indicates no limit on repetitions",
                             "placeholder": "No Limit"
                         }
                     ]
