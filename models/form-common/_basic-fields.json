@@ -8,8 +8,8 @@
             "required": true,
             "valueFormat": "regexp",
             "validation": {
-                "regExp": "^(?!.*\\s)[^$].*",
-                "customErrorMsg": "Name cannot start with $ and cannot contain spaces"
+                "regExp": "^[^$].*",
+                "customErrorMsg": "Name cannot start with $"
             }
         },
         {
