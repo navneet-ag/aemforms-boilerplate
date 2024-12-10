@@ -38,40 +38,10 @@
                     "name": "basic",
                     "label": "Basic",
                     "collapsible": false,
-                    "fields": [
-                        {
-                            "...": "./_common.json#/basicfields"
-                        },
-                        {
-                            "component": "text",
-                            "name": "buttonText",
-                            "label": "Button Title",
-                            "valueType": "string"
-                        },
-                        {
-                        "component": "richtext",
-                        "name": "dragDropText",
-                        "label": "Drag Drop Text",
-                        "valueType": "string"
-                        }
-                    ]
+                    "...": "../form-common/_basic-input-fields.json"
                 },
                 {
-                    "component": "container",
-                    "name": "help",
-                    "label": "Help Content",
-                    "collapsible": true,
-                    "fields": [
-                        {
-                            "...": "./_common.json#/helpfields"
-                        },
-                        {
-                            "component": "boolean",
-                            "name": "alwaysShowShortDescription",
-                            "label": "Always show short description",
-                            "valueType": "boolean"
-                        }
-                    ]
+                    "...": "../form-common/_help-container.json"
                 },
                 {
                     "component": "container",
@@ -80,14 +50,7 @@
                     "collapsible": true,
                     "fields": [
                         {
-                            "...": "./_common.json#/validationfields"
-                        },
-                        {
-                            "component": "text",
-                            "name": "validateExpMessage",
-                            "label": "Script validation message",
-                            "valueType": "string",
-                            "description": "Displayed when validation script fails."
+                            "...": "../form-common/_script-validation-fields.json#/fields"
                         },
                         {
                             "component": "number",

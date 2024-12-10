@@ -235,9 +235,9 @@
                 "template": {
                   "jcr:title": "Checkbox",
                   "fieldType": "checkbox",
+                  "checkedValue": "on",
                   "enabled": true,
-                  "visible": true,
-                  "checkedValue": "on"
+                  "visible": true
                 }
               }
             }
@@ -261,8 +261,8 @@
                     "Item 1",
                     "Item 2"
                   ],
-                  "enabled": true,
-                  "visible": true
+                  "visible": true,
+                  "enabled": true
                 }
               }
             }
