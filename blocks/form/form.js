@@ -4,7 +4,6 @@ import {
   getId,
   stripTags,
   checkValidation,
-  createShortDescription,
   toClassName,
   getSitePageName,
 } from './util.js';
@@ -278,11 +277,8 @@ function inputDecorator(field, element) {
   if (input) {
     input.id = field.id;
     input.name = field.name;
-    if (field.tooltip && !field.properties?.alwaysShowShortDescription) {
+    if (field.tooltip) {
       input.title = stripTags(field.tooltip, '');
-    }
-    if (field.properties?.alwaysShowShortDescription) {
-      element.append(createShortDescription(field));
     }
     input.readOnly = field.readOnly;
     input.autocomplete = field.autoComplete ?? 'off';

@@ -341,8 +341,7 @@
                   "dragDropText": "Drag and Drop To Upload",
                   "type": "file",
                   "enabled": true,
-                  "visible": true,
-                  "alwaysShowShortDescription": false
+                  "visible": true
                 }
               }
             }
