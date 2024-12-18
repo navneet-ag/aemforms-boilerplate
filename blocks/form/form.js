@@ -160,7 +160,7 @@ function createRepeatablePanel(wrapper, fd) {
       }
     });
   }
-  if (!fd.index || fd?.index === 0) {
+  if ((!fd.index || fd?.index === 0) && fd.properties?.variant !== 'noButtons') {
     insertAddButton(wrapper, wrapper);
     insertRemoveButton(wrapper, wrapper);
   }

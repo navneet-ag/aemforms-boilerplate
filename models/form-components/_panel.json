@@ -53,7 +53,15 @@
                             "name": "maxOccur",
                             "label": "Maximum repetitions",
                             "valueType": "number",
-                            "description": "Maximum number of times the panel can appear on the form"
+                            "description": "Maximum number of times the panel can appear on the form. No value indicates no limit.",
+                            "condition": {
+                                "!=": [
+                                    {
+                                        "var": "variant"
+                                    },
+                                    "noButtons"
+                                ]
+                            }
                         },
                         {
                             "component": "select",

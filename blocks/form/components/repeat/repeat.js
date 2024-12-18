@@ -121,7 +121,9 @@ export default function transferRepeatableDOM(form) {
       update(el, 0, wrapper['#repeat-template-label']);
       el.setAttribute('data-index', 0);
     }
-    insertAddButton(wrapper, form);
+    if (el.dataset.variant !== 'noButtons') {
+      insertAddButton(wrapper, form);
+    }
     wrapper.className = 'repeat-wrapper';
   });
 }
