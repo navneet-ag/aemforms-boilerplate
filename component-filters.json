@@ -44,6 +44,7 @@
   {
     "id": "form",
     "components": [
+      "accordion",
       "captcha",
       "checkbox",
       "checkbox-group",
