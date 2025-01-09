@@ -44,7 +44,6 @@
   {
     "id": "form",
     "components": [
-      "accordion",
       "captcha",
       "checkbox",
       "checkbox-group",
@@ -52,12 +51,13 @@
       "drop-down",
       "email",
       "file-input",
+      "form-accordion",
       "form-button",
       "form-fragment",
       "form-image",
+      "form-modal",
       "form-reset-button",
       "form-submit-button",
-      "modal",
       "number-input",
       "panel",
       "plain-text",

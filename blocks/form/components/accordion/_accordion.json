@@ -2,7 +2,7 @@
     "definitions": [
         {
             "title": "Accordion",
-            "id": "accordion",
+            "id": "form-accordion",
             "plugins": {
                 "xwalk": {
                     "page": {
@@ -12,7 +12,19 @@
                             "fieldType": "panel",
                             "fd:viewType": "accordion",
                             "enabled": true,
-                            "visible": true
+                            "visible": true,
+                            "panel1": {
+                                "jcr:title": "Item 1",
+                                "fieldType": "panel",
+                                "visible": true,
+                                "enabled": true
+                            },
+                            "panel2": {
+                                "jcr:title": "Item 2",
+                                "fieldType": "panel",
+                                "visible": true,
+                                "enabled": true
+                            }
                         }
                     }
                 }
