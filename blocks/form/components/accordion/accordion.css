@@ -48,4 +48,13 @@ main .form fieldset.accordion fieldset > :not(legend) {
 
 main .form fieldset.accordion fieldset {
     border: 1px solid var(--color-accordion-border);
+    margin: 0;
+}
+
+main .form fieldset.accordion  fieldset.accordion-collapse {
+    border: unset;
+}
+
+main .form fieldset.accordion {
+    row-gap: 0;
 }
