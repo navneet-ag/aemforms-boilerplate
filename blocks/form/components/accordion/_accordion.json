@@ -28,11 +28,7 @@
                     "name": "basic",
                     "label": "Basic",
                     "collapsible": false,
-                    "fields": [
-                        {
-                            "...": "../../../../models/form-common/_basic-input-fields.json"
-                        }
-                    ]
+                    "...": "../../../../models/form-common/_basic-input-fields.json"
                 },
                 {
                     "component": "container",
