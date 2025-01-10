@@ -651,6 +651,7 @@
             "label": "Display Options",
             "name": "orientation",
             "valueType": "string",
+            "value": "horizontal",
             "options": [
               {
                 "name": "Horizontally",
@@ -2931,6 +2932,7 @@
             "label": "Display Options",
             "name": "orientation",
             "valueType": "string",
+            "value": "horizontal",
             "options": [
               {
                 "name": "Horizontally",
