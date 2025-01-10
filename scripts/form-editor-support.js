@@ -178,6 +178,7 @@ export function annotateFormForEditing(formEl, formDefinition) {
 function handleNavigation(container, resource, navigationHandler) {
   const el = container.querySelector(`[data-aue-resource='${resource}']`);
   if (el.hasAttribute('data-index')) {
+    // if selected element is the direct child of wizard
     navigationHandler(container, el);
   } else {
     Array.from(container.children).forEach((child) => {
