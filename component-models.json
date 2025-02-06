@@ -1358,6 +1358,12 @@
                 "value": "number"
               }
             ]
+          },
+          {
+            "component": "text",
+            "name": "placeholder",
+            "label": "Placeholder text",
+            "valueType": "string"
           }
         ]
       },
