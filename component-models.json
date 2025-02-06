@@ -2423,6 +2423,22 @@
             "name": "default",
             "label": "Default Value",
             "valueType": "string"
+          },
+          {
+            "component": "select",
+            "name": "type",
+            "label": "Number type",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Integer (1234)",
+                "value": "integer"
+              },
+              {
+                "name": "Decimal (1234.000)",
+                "value": "number"
+              }
+            ]
           }
         ]
       },
