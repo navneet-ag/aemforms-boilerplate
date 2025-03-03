@@ -402,7 +402,8 @@
                   "jcr:title": "Panel",
                   "fieldType": "panel",
                   "enabled": true,
-                  "visible": true
+                  "visible": true,
+                  "minOccur": 1
                 }
               }
             }
@@ -530,7 +531,8 @@
                   "jcr:title": "Text",
                   "fieldType": "plain-text",
                   "visible": true,
-                  "textIsRich": true
+                  "textIsRich": true,
+                  "value": "Adaptive Form Text Component"
                 }
               }
             }
