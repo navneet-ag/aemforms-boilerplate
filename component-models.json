@@ -647,18 +647,19 @@
             "label": "Data type of submitted value",
             "name": "type",
             "valueType": "string",
+            "value": "number[]",
             "options": [
               {
                 "name": "String",
-                "value": "string"
+                "value": "string[]"
               },
               {
                 "name": "Boolean",
-                "value": "boolean"
+                "value": "boolean[]"
               },
               {
                 "name": "Number",
-                "value": "number"
+                "value": "number[]"
               }
             ]
           },
@@ -1344,6 +1345,7 @@
             "label": "Data type of submitted value",
             "name": "type",
             "valueType": "string",
+            "value": "number",
             "options": [
               {
                 "name": "String",
@@ -1358,6 +1360,12 @@
                 "value": "number"
               }
             ]
+          },
+          {
+            "component": "text",
+            "name": "placeholder",
+            "label": "Placeholder text",
+            "valueType": "string"
           }
         ]
       },
@@ -2052,6 +2060,12 @@
         "label": "Alternate text"
       },
       {
+        "component": "text",
+        "name": "dataRef",
+        "label": "Bind reference",
+        "valueType": "string"
+      },
+      {
         "component": "boolean",
         "name": "visible",
         "label": "Show Component",
@@ -2423,6 +2437,22 @@
             "name": "default",
             "label": "Default Value",
             "valueType": "string"
+          },
+          {
+            "component": "select",
+            "name": "type",
+            "label": "Number type",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Integer (1234)",
+                "value": "integer"
+              },
+              {
+                "name": "Decimal (1234.000)",
+                "value": "number"
+              }
+            ]
           }
         ]
       },
@@ -2680,7 +2710,15 @@
             "name": "minOccur",
             "label": "Minimum repetitions",
             "valueType": "number",
-            "description": "Minimum number of times the panel appears on the form"
+            "description": "Minimum number of times the panel appears on the form",
+            "condition": {
+              "===": [
+                {
+                  "var": "repeatable"
+                },
+                true
+              ]
+            }
           },
           {
             "component": "number",
@@ -2690,11 +2728,23 @@
             "placeholder": "No Limit",
             "description": "Maximum number of times the panel can appear on the form. No value indicates no limit.",
             "condition": {
-              "!=": [
+              "and": [
                 {
-                  "var": "variant"
+                  "===": [
+                    {
+                      "var": "repeatable"
+                    },
+                    true
+                  ]
                 },
-                "noButtons"
+                {
+                  "!==": [
+                    {
+                      "var": "variant"
+                    },
+                    "noButtons"
+                  ]
+                }
               ]
             }
           },
@@ -2729,11 +2779,23 @@
             "valueType": "string",
             "value": "Add",
             "condition": {
-              "===": [
+              "and": [
                 {
-                  "var": "variant"
+                  "===": [
+                    {
+                      "var": "variant"
+                    },
+                    "addRemoveButtons"
+                  ]
                 },
-                "addRemoveButtons"
+                {
+                  "===": [
+                    {
+                      "var": "repeatable"
+                    },
+                    true
+                  ]
+                }
               ]
             }
           },
@@ -2744,11 +2806,23 @@
             "valueType": "string",
             "value": "Delete",
             "condition": {
-              "===": [
+              "and": [
                 {
-                  "var": "variant"
+                  "===": [
+                    {
+                      "var": "variant"
+                    },
+                    "addRemoveButtons"
+                  ]
                 },
-                "addRemoveButtons"
+                {
+                  "===": [
+                    {
+                      "var": "repeatable"
+                    },
+                    true
+                  ]
+                }
               ]
             }
           }
@@ -2953,12 +3027,6 @@
                 "value": "number"
               }
             ]
-          },
-          {
-            "component": "text",
-            "name": "default",
-            "label": "Default option",
-            "valueType": "string"
           },
           {
             "component": "radio-group",
@@ -3738,6 +3806,12 @@
         "label": "Name",
         "valueType": "string",
         "required": true
+      },
+      {
+        "component": "text",
+        "name": "dataRef",
+        "label": "Bind reference",
+        "valueType": "string"
       },
       {
         "component": "boolean",
