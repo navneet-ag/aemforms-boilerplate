@@ -194,6 +194,38 @@
       "id": "form-general",
       "components": [
         {
+          "title": "Accordion",
+          "id": "form-accordion",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/fd/components/form/panelcontainer/v1/panelcontainer",
+                "template": {
+                  "jcr:title": "Accordion",
+                  "fieldType": "panel",
+                  "fd:viewType": "accordion",
+                  "enabled": true,
+                  "visible": true,
+                  "panel1": {
+                    "jcr:title": "Item 1",
+                    "fieldType": "panel",
+                    "visible": true,
+                    "enabled": true,
+                    "sling:resourceType": "core/fd/components/form/panelcontainer/v1/panelcontainer"
+                  },
+                  "panel2": {
+                    "jcr:title": "Item 2",
+                    "fieldType": "panel",
+                    "visible": true,
+                    "enabled": true,
+                    "sling:resourceType": "core/fd/components/form/panelcontainer/v1/panelcontainer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Button",
           "id": "form-button",
           "plugins": {
@@ -262,7 +294,8 @@
                     "Item 2"
                   ],
                   "visible": true,
-                  "enabled": true
+                  "enabled": true,
+                  "orientation": "horizontal"
                 }
               }
             }
@@ -295,6 +328,14 @@
                 "template": {
                   "jcr:title": "Drop Down List",
                   "fieldType": "drop-down",
+                  "enum": [
+                    "0",
+                    "1"
+                  ],
+                  "enumNames": [
+                    "Item 1",
+                    "Item 2"
+                  ],
                   "enabled": true,
                   "visible": true
                 }
@@ -380,7 +421,7 @@
         },
         {
           "title": "Modal",
-          "id": "modal",
+          "id": "form-modal",
           "plugins": {
             "xwalk": {
               "page": {
@@ -424,7 +465,8 @@
                   "jcr:title": "Panel",
                   "fieldType": "panel",
                   "enabled": true,
-                  "visible": true
+                  "visible": true,
+                  "minOccur": 1
                 }
               }
             }
@@ -444,12 +486,13 @@
                     "0",
                     "1"
                   ],
-                  "enumNumes": [
+                  "enumNames": [
                     "Item 1",
                     "Item 2"
                   ],
                   "enabled": true,
-                  "visible": true
+                  "visible": true,
+                  "orientation": "horizontal"
                 }
               }
             }
@@ -595,7 +638,8 @@
                   "jcr:title": "Text",
                   "fieldType": "plain-text",
                   "visible": true,
-                  "textIsRich": true
+                  "textIsRich": true,
+                  "value": "Adaptive Form Text Component"
                 }
               }
             }

@@ -19,7 +19,8 @@
                                 "Item 2"
                             ],
                             "enabled": true,
-                            "visible": true
+                            "visible": true,
+                            "orientation": "horizontal"
                         }
                     }
                 }
@@ -38,6 +39,22 @@
                     "fields": [
                         {
                             "...": "../form-common/_basic-select-fields.json#/fields"
+                        },
+                        {
+                            "component": "select",
+                            "name": "variant",
+                            "label": "Variant",
+                            "options": [
+                                {
+                                    "name": "Default",
+                                    "value": "default"
+                                },
+                                {
+                                    "name": "Cards",
+                                    "value": "cards"
+                                }
+                            ],
+                            "value": "default"
                         },
                         {
                             "component": "select",
@@ -70,6 +87,7 @@
                             "label": "Display Options",
                             "name": "orientation",
                             "valueType": "string",
+                            "value": "horizontal",
                             "options": [
                                 {
                                     "name": "Horizontally",
