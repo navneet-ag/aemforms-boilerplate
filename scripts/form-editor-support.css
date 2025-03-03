@@ -40,7 +40,7 @@ main .form form.edit-mode .fragment-wrapper.edit-mode{
     border-color: rgba(0 0 0 / 15%);
     border-radius: 4px;
     background: linear-gradient(180deg,rgba(0 0 0 / 5%),rgba(255 255 255 / 5%),rgba(0 0 0 / 5%)),
-                linear-gradient(90deg,rgba(0 0 0 / 5%),rgba(255 255 255 / 5%),rgba(0 0 0 / 5%));
+    linear-gradient(90deg,rgba(0 0 0 / 5%),rgba(255 255 255 / 5%),rgba(0 0 0 / 5%));
 }
 
 form.edit-mode .fragment-wrapper.edit-mode .fragment-title {
@@ -58,7 +58,7 @@ form.edit-mode:not(:has(*)) {
 }
 
 form.edit-mode:not(:has(*))::before {
-   content: "Adaptive Form";
+    content: "Adaptive Form";
 }
 
 form.edit-mode .modal dialog {
@@ -70,7 +70,7 @@ form.edit-mode .modal dialog {
     visibility: hidden ;
 }
 :root.adobe-ue-preview .grecaptcha-badge {
-     visibility: visible ;
+    visibility: visible ;
 }
 
 main .form form.edit-mode .captcha-wrapper {
@@ -83,17 +83,5 @@ main .form form.edit-mode .captcha-wrapper {
     border-color: rgba(0 0 0 / 15%);
     border-radius: 4px;
     background: linear-gradient(180deg,rgba(0 0 0 / 5%),rgba(255 255 255 / 5%),rgba(0 0 0 / 5%)),
-                linear-gradient(90deg,rgba(0 0 0 / 5%),rgba(255 255 255 / 5%),rgba(0 0 0 / 5%));
-}
-
-.plain-text-wrapper.edit-mode:has(p:empty) {
-    display: flex !important;
-    justify-content: center;
-    padding: 15px;
-    background: linear-gradient(180deg,rgba(0 0 0 / 5%),rgba(255 255 255 / 5%),rgba(0 0 0 / 5%)),
     linear-gradient(90deg,rgba(0 0 0 / 5%),rgba(255 255 255 / 5%),rgba(0 0 0 / 5%));
-}
-
-.plain-text-wrapper.edit-mode:has(p:empty)::before {
-    content: "Adaptive Form Text Component";
 }
