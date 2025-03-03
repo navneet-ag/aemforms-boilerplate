@@ -217,6 +217,8 @@ async function renderFormBlock(form, editMode) {
     code.textContent = JSON.stringify(formDef);
     pre.appendChild(code);
     div.appendChild(pre);
+    console.log(pre);
+    window.dispatchEvent(new CustomEvent("formRendered"));
     await decorate(block);
     return {
       formEl: block.querySelector('form'),
