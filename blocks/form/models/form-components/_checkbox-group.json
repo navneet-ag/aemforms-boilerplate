@@ -21,7 +21,7 @@
                             "visible": true,
                             "enabled": true,
                             "orientation": "horizontal",
-                            "type": "number[]"
+                            "type": "string[]"
                         }
                     }
                 }
