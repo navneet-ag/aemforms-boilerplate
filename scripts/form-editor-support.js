@@ -399,7 +399,7 @@ function enableAuthoringAssistantExtension() {
   console.log('Adding meta tag for aem forms authoring assistant extension:', meta.content);
   document.head.appendChild(meta);
 }
-//enableAuthoringAssistantExtension();
+enableAuthoringAssistantExtension();
 
 function enableWizard() {
   const meta = document.createElement('meta');
@@ -409,4 +409,4 @@ function enableWizard() {
   console.log('Adding meta tag for aem forms authoring assistant extension:', meta.content);
   document.head.appendChild(meta);
 }
-enableWizard();
+//enableWizard();
