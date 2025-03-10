@@ -7,9 +7,10 @@ test.describe('Wizard test', () => {
     await openPage(page, testURL);
     const nxtBtn = await page.getByRole('button', { name: 'Next' });
     await nxtBtn.click();
-    expect(await page.locator('#textinput-cc9dc604c7-description').innerText).toBe('Please fill in this field.');
+    expect(await page.locator('#textinput-cc9dc604c7-description').textContent()).toBe('Please fill in this field.');
     const textInput = await page.getByLabel('Text Input');
     await textInput.fill('abc');
     await nxtBtn.click();
+    await expect(page.locator('.current-wizard-step')).toHaveAttribute('data-index', '1');
   });
 });
