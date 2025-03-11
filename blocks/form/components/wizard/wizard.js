@@ -41,9 +41,9 @@ export class WizardLayout {
   validateContainer(container) {
     const fieldElements = [...container.querySelectorAll(this.inputFields)];
     const isValid = fieldElements.reduce((valid, fieldElement) => {
-      const hidden = fieldElement.closest('.field-wrapper')?.dataset?.visible === 'false';
+      const isHidden = fieldElement.closest('.field-wrapper')?.dataset?.visible === 'false';
       let isFieldValid = true;
-      if (!hidden) {
+      if (!isHidden) {
         isFieldValid = fieldElement.checkValidity();
       }
       return valid && isFieldValid;
