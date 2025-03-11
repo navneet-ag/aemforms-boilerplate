@@ -13,8 +13,7 @@ export class Modal {
   createDialog(panel) {
     const dialog = document.createElement('dialog');
     const dialogContent = document.createElement('div');
-    dialogContent.classList.add('modal-content');
-    
+    dialogContent.classList.add('modal-content');    
     // First time initialization - store original content
     if (!this.originalContent) {
       this.originalContent = [...panel.childNodes];
@@ -25,7 +24,6 @@ export class Modal {
     this.originalContent.forEach(node => {
       dialogContent.appendChild(node);
     });
-    
     dialog.append(dialogContent);
     const closeButton = document.createElement('button');
     closeButton.classList.add('close-button');
@@ -69,7 +67,7 @@ export class Modal {
         this.modalWrapper.appendChild(this.dialog);
       }
     }
-    
+
     if (this.dialog.isConnected) {
       this.dialog.showModal();
       document.body.classList.add('modal-open');
