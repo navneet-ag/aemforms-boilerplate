@@ -13,15 +13,15 @@ export class Modal {
   createDialog(panel) {
     const dialog = document.createElement('dialog');
     const dialogContent = document.createElement('div');
-    dialogContent.classList.add('modal-content');    
+    dialogContent.classList.add('modal-content');
     // First time initialization - store original content
     if (!this.originalContent) {
       this.originalContent = [...panel.childNodes];
     }
-    
+
     // Move the original nodes to the dialog content
     // This preserves all event listeners and attached logic
-    this.originalContent.forEach(node => {
+    this.originalContent.forEach((node) => {
       dialogContent.appendChild(node);
     });
     dialog.append(dialogContent);
@@ -44,13 +44,12 @@ export class Modal {
     });
     dialog.addEventListener('close', () => {
       document.body.classList.remove('modal-open');
-      
       // Move the content back to the panel when dialog closes
       const modalContent = dialog.querySelector('.modal-content');
       while (modalContent.firstChild) {
         this.panel.appendChild(modalContent.firstChild);
       }
-      
+
       dialog.remove();
       if (this.formModel) {
         this.formModel.getElement(panel?.id).visible = false;
