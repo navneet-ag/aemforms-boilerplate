@@ -399,15 +399,15 @@ function enableAuthoringAssistantExtension() {
   console.log('Adding meta tag for aem forms authoring assistant extension:', meta.content);
   document.head.appendChild(meta);
 }
-// enableAuthoringAssistantExtension();
+enableAuthoringAssistantExtension();
 
 function enableWizard() {
   const meta = document.createElement('meta');
   meta.name = 'urn:adobe:aue:config:extensions';
-  meta.content = 'https://experience.adobe.com/solutions/livecycle-forms-spa/static-assets/resources/universal_editor.html?livecycle-forms-spa_version=PR-521-90647fee40bfdb37ba07cd4b046d373c6cd4df82';
+  //meta.content = 'https://experience.adobe.com/solutions/livecycle-forms-spa/static-assets/resources/universal_editor.html?livecycle-forms-spa_version=PR-521-90647fee40bfdb37ba07cd4b046d373c6cd4df82';
   // meta.content = 'https://experience.adobe.com/solutions/livecycle-forms-spa/static-assets/resources/universal_editor.html?livecycle-forms-spa_version=PR-521-91acb29ea1d55507733a36463fe2be35e5ffe885'
    // meta.content = 'https://experience.adobe.com/solutions/livecycle-datasource-ui-service/resources/universal_editor?shell_domain=*.adobeaemclould.com&livecycle-datasource-ui-service_version=PR-15-055e7e89563e3c68cd65d3d875f5ed9cb90d4e17';
   console.log('Adding meta tag for data source tree extension:', meta.content);
   document.head.appendChild(meta);
 }
-enableWizard();
+//enableWizard();
