@@ -150,14 +150,17 @@
     ]
   },
   {
-    "id": "form-embed",
+    "id": "embed-adaptive-form",
     "fields": [
       {
-        "component": "text",
+        "component": "aem-content",
         "valueType": "string",
         "name": "formPath",
         "value": "",
-        "label": "Form Path"
+        "label": "Form Path",
+        "validation": {
+          "rootPath": "/content/forms/af"
+        }
       }
     ]
   },
