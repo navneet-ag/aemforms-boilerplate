@@ -1,17 +1,32 @@
 {
     "definitions": [
         {
-            "title": "Panel",
-            "id": "panel",
+            "title": "Accordion",
+            "id": "form-accordion",
             "plugins": {
                 "xwalk": {
                     "page": {
                         "resourceType": "core/fd/components/form/panelcontainer/v1/panelcontainer",
                         "template": {
-                            "jcr:title": "Panel",
+                            "jcr:title": "Accordion",
                             "fieldType": "panel",
+                            "fd:viewType": "accordion",
                             "enabled": true,
-                            "visible": true
+                            "visible": true,
+                            "panel1": {
+                                "jcr:title": "Item 1",
+                                "fieldType": "panel",
+                                "visible": true,
+                                "enabled": true,
+                                "sling:resourceType": "core/fd/components/form/panelcontainer/v1/panelcontainer"
+                            },
+                            "panel2": {
+                                "jcr:title": "Item 2",
+                                "fieldType": "panel",
+                                "visible": true,
+                                "enabled": true,
+                                "sling:resourceType": "core/fd/components/form/panelcontainer/v1/panelcontainer"
+                            }
                         }
                     }
                 }
@@ -20,25 +35,25 @@
     ],
     "models": [
         {
-            "id": "panel",
+            "id": "accordion",
             "fields": [
                 {
                     "component": "container",
                     "name": "basic",
                     "label": "Basic",
                     "collapsible": false,
-                    "...": "../form-common/_basic-input-fields.json"
+                    "...": "../../models/form-common/_basic-input-fields.json"
                 },
                 {
                     "component": "container",
                     "name": "repeat",
-                    "label": "Repeat Panel",
+                    "label": "Repeat Accordion",
                     "collapsible": true,
                     "fields": [
                         {
                             "component": "boolean",
                             "name": "repeatable",
-                            "label": "Make panel repeatable",
+                            "label": "Make accordion repeatable",
                             "valueType": "boolean"
                         },
                         {
@@ -46,19 +61,19 @@
                             "name": "minOccur",
                             "label": "Minimum repetitions",
                             "valueType": "number",
-                            "description": "Minimum number of times the panel appears on the form"
+                            "description": "Minimum number of times the accordion appears on the form"
                         },
                         {
                             "component": "number",
                             "name": "maxOccur",
                             "label": "Maximum repetitions",
                             "valueType": "number",
-                            "description": "Maximum number of times the panel can appear on the form"
+                            "description": "Maximum number of times the accordion can appear on the form"
                         }
                     ]
                 },
                 {
-                    "...": "../form-common/_help-container.json"
+                    "...": "../../models/form-common/_help-container.json"
                 }
             ]
         }

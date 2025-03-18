@@ -59,8 +59,9 @@
         {
             "component": "select",
             "name": "colspan",
-            "label": "Columns",
+            "label": "Column Span",
             "valueType": "string",
+            "value": "12",
             "options": [
                 {
                     "name": "1 column",

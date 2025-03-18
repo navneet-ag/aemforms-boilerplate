@@ -1,26 +1,27 @@
 {
     "definitions": [
         {
-            "title": "Radio Group",
-            "id": "radio-group",
+            "title": "Checkbox group",
+            "id": "checkbox-group",
             "plugins": {
                 "xwalk": {
                     "page": {
-                        "resourceType": "core/fd/components/form/radiobutton/v1/radiobutton",
+                        "resourceType": "core/fd/components/form/checkboxgroup/v1/checkboxgroup",
                         "template": {
-                            "jcr:title": "Radio Group",
-                            "fieldType": "radio-group",
+                            "jcr:title": "Checkbox Group",
+                            "fieldType": "checkbox-group",
                             "enum": [
                                 "0",
                                 "1"
                             ],
-                            "enumNumes": [
+                            "enumNames": [
                                 "Item 1",
                                 "Item 2"
                             ],
-                            "enabled": true,
                             "visible": true,
-                            "orientation": "horizontal"
+                            "enabled": true,
+                            "orientation": "horizontal",
+                            "type": "string[]"
                         }
                     }
                 }
@@ -29,7 +30,7 @@
     ],
     "models": [
         {
-            "id": "radio-group",
+            "id": "checkbox-group",
             "fields": [
                 {
                     "component": "container",
@@ -42,29 +43,40 @@
                         },
                         {
                             "component": "select",
+                            "name": "variant",
+                            "label": "Variant",
+                            "options": [
+                                {
+                                    "name": "Default",
+                                    "value": "default"
+                                },
+                                {
+                                    "name": "Cards",
+                                    "value": "cards"
+                                }
+                            ],
+                            "value": "default"
+                        },
+                        {
+                            "component": "select",
                             "label": "Data type of submitted value",
                             "name": "type",
                             "valueType": "string",
+                            "value": "string[]",
                             "options": [
                                 {
                                     "name": "String",
-                                    "value": "string"
+                                    "value": "string[]"
                                 },
                                 {
                                     "name": "Boolean",
-                                    "value": "boolean"
+                                    "value": "boolean[]"
                                 },
                                 {
                                     "name": "Number",
-                                    "value": "number"
+                                    "value": "number[]"
                                 }
                             ]
-                        },
-                        {
-                            "component": "text",
-                            "name": "default",
-                            "label": "Default option",
-                            "valueType": "string"
                         },
                         {
                             "component": "radio-group",

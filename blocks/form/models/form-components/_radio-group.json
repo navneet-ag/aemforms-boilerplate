@@ -1,15 +1,15 @@
 {
     "definitions": [
         {
-            "title": "Checkbox group",
-            "id": "checkbox-group",
+            "title": "Radio Group",
+            "id": "radio-group",
             "plugins": {
                 "xwalk": {
                     "page": {
-                        "resourceType": "core/fd/components/form/checkboxgroup/v1/checkboxgroup",
+                        "resourceType": "core/fd/components/form/radiobutton/v1/radiobutton",
                         "template": {
-                            "jcr:title": "Checkbox Group",
-                            "fieldType": "checkbox-group",
+                            "jcr:title": "Radio Group",
+                            "fieldType": "radio-group",
                             "enum": [
                                 "0",
                                 "1"
@@ -18,8 +18,8 @@
                                 "Item 1",
                                 "Item 2"
                             ],
-                            "visible": true,
                             "enabled": true,
+                            "visible": true,
                             "orientation": "horizontal"
                         }
                     }
@@ -29,7 +29,7 @@
     ],
     "models": [
         {
-            "id": "checkbox-group",
+            "id": "radio-group",
             "fields": [
                 {
                     "component": "container",
@@ -39,6 +39,22 @@
                     "fields": [
                         {
                             "...": "../form-common/_basic-select-fields.json#/fields"
+                        },
+                        {
+                            "component": "select",
+                            "name": "variant",
+                            "label": "Variant",
+                            "options": [
+                                {
+                                    "name": "Default",
+                                    "value": "default"
+                                },
+                                {
+                                    "name": "Cards",
+                                    "value": "cards"
+                                }
+                            ],
+                            "value": "default"
                         },
                         {
                             "component": "select",
