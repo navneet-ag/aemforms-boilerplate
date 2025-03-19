@@ -8,8 +8,8 @@ test.describe('Reset Doc Based', () => {
         const fName = await page.getByLabel('First Name*');
         const lName = await page.getByLabel('Last Name*');
         const email = await page.getByLabel('Work Email*');
-        const next = await page.getByLabel('Next');
-        const reset = await page.getByLabel('Reset Form');
+        const next = await page.getByRole('button', { name: 'Next' })
+        const reset = await page.getByRole('button', { name: 'Reset Form' })
         await fName.fill('abc');
         await lName.fill('abc');
         await email.fill('abc@gmail.com');
@@ -17,5 +17,8 @@ test.describe('Reset Doc Based', () => {
         await expect(page.locator('.current-wizard-step')).toHaveAttribute('data-index', '1');
         await reset.click();
         await expect(page.locator('.current-wizard-step')).toHaveAttribute('data-index', '0');
+        await expect(fName).toHaveValue('');
+        await expect(lName).toHaveValue('');
+        await expect(email).toHaveValue('');
     });
 });
