@@ -41,7 +41,7 @@ const API_BASE_URL = 'http://bumblebee:3000/api';
  * @param {Object} body - Request body for POST requests
  * @returns {Promise<Object>} - API response
  */
-async function fetchAPI(endpoint, method = 'GET', body = null) {
+function fetchAPI(endpoint, method = 'GET', body = null) {
   try {
     const options = {
       method,
@@ -54,11 +54,15 @@ async function fetchAPI(endpoint, method = 'GET', body = null) {
       options.body = JSON.stringify(body);
     }
 
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
-    return await response.json();
+    return fetch(`${API_BASE_URL}${endpoint}`, options)
+      .then(response => response.json())
+      .catch(error => {
+        console.error(`Error in API call to ${endpoint}:`, error);
+        return { status: 'FAILURE', message: 'Network error', errorCode: 'NETWORK_ERROR' };
+      });
   } catch (error) {
     console.error(`Error in API call to ${endpoint}:`, error);
-    return { status: 'FAILURE', message: 'Network error', errorCode: 'NETWORK_ERROR' };
+    return Promise.resolve({ status: 'FAILURE', message: 'Network error', errorCode: 'NETWORK_ERROR' });
   }
 }
 
@@ -66,7 +70,7 @@ async function fetchAPI(endpoint, method = 'GET', body = null) {
  * Generates access token for API authentication
  * @returns {Promise<Object>} - Authentication response with access token
  */
-async function oauthProxy() {
+function oauthProxy() {
   return fetchAPI('/oauth-proxy', 'POST');
 }
 
@@ -75,7 +79,7 @@ async function oauthProxy() {
  * @param {string} mobileNumber - Mobile number to send OTP
  * @returns {Promise<Object>} - OTP generation response
  */
-async function otpGeneration(mobileNumber) {
+function otpGeneration(mobileNumber) {
   return fetchAPI('/otp-generation', 'POST', { mobileNumber });
 }
 
@@ -85,7 +89,7 @@ async function otpGeneration(mobileNumber) {
  * @param {string} otp - OTP entered by user
  * @returns {Promise<Object>} - OTP validation response
  */
-async function otpValidation(referenceId, otp) {
+function otpValidation(referenceId, otp) {
   return fetchAPI('/otp-validation', 'POST', { referenceId, otp });
 }
 
@@ -97,7 +101,7 @@ async function otpValidation(referenceId, otp) {
  * @param {string} entityType - Type of entity
  * @returns {Promise<Object>} - Factiva input response
  */
-async function factivaInput(name, dob, pan, entityType) {
+function factivaInput(name, dob, pan, entityType) {
   return fetchAPI('/factiva-input', 'POST', { name, dob, pan, entityType });
 }
 
@@ -106,7 +110,7 @@ async function factivaInput(name, dob, pan, entityType) {
  * @param {string} requestId - Request ID from Factiva input
  * @returns {Promise<Object>} - Factiva output response
  */
-async function factivaOutput(requestId) {
+function factivaOutput(requestId) {
   return fetchAPI(`/factiva-output?requestId=${requestId}`);
 }
 
@@ -115,7 +119,7 @@ async function factivaOutput(requestId) {
  * @param {string} pan - PAN number to verify
  * @returns {Promise<Object>} - PAN verification response
  */
-async function panVerification(pan) {
+function panVerification(pan) {
   return fetchAPI('/pan-verification', 'POST', { pan });
 }
 
@@ -126,7 +130,7 @@ async function panVerification(pan) {
  * @param {string} dob - Date of birth (optional)
  * @returns {Promise<Object>} - Account details response
  */
-async function fetchCasaDetails(mobileNumber, pan, dob) {
+function fetchCasaDetails(mobileNumber, pan, dob) {
   return fetchAPI('/fetch-casa-details', 'POST', { mobileNumber, pan, dob });
 }
 
@@ -136,7 +140,7 @@ async function fetchCasaDetails(mobileNumber, pan, dob) {
  * @param {string} aadhaarName - Name from Aadhaar
  * @returns {Promise<Object>} - Name match results
  */
-async function posidexNameMatch(panName, aadhaarName) {
+function posidexNameMatch(panName, aadhaarName) {
   return fetchAPI('/posidex-name-match', 'POST', { panName, aadhaarName });
 }
 
@@ -147,7 +151,7 @@ async function posidexNameMatch(panName, aadhaarName) {
  * @param {string} dob - Date of birth
  * @returns {Promise<Object>} - Credit bureau results
  */
-async function multibureauService(pan, name, dob) {
+function multibureauService(pan, name, dob) {
   return fetchAPI('/multibureau-service', 'POST', { pan, name, dob });
 }
 
@@ -159,7 +163,7 @@ async function multibureauService(pan, name, dob) {
  * @param {string} productCode - Product code
  * @returns {Promise<Object>} - Lead creation response
  */
-async function crmSave(customerName, mobileNumber, productCode, pan) {
+function crmSave(customerName, mobileNumber, productCode, pan) {
   return fetchAPI('/crm-save', 'POST', { customerName, mobileNumber, productCode, pan });
 }
 
@@ -174,7 +178,7 @@ async function crmSave(customerName, mobileNumber, productCode, pan) {
  * @param {string} token - Authentication token (optional)
  * @returns {Promise<Object>} - Account opening response
  */
-async function accountOpening(customerName, mobileNumber, pan, aadhaar, productCode, leadId, token) {
+function accountOpening(customerName, mobileNumber, pan, aadhaar, productCode, leadId, token) {
   return fetchAPI('/account-opening', 'POST', { customerName, mobileNumber, pan, aadhaar, productCode, leadId, token });
 }
 
@@ -186,7 +190,7 @@ async function accountOpening(customerName, mobileNumber, pan, aadhaar, productC
  * @param {string} branchCode - Branch code
  * @returns {Promise<Object>} - ETB account opening response
  */
-async function etbAccountOpening(customerId, productCode, token, branchCode) {
+function etbAccountOpening(customerId, productCode, token, branchCode) {
   return fetchAPI('/etb-account-opening', 'POST', { customerId, productCode, token, branchCode });
 }
 
@@ -198,7 +202,7 @@ async function etbAccountOpening(customerId, productCode, token, branchCode) {
  * @param {string} pan - PAN number (optional)
  * @returns {Promise<Object>} - Customer details response
  */
-async function fcFetchCustDemog(customerId, mobileNumber, dob, pan) {
+function fcFetchCustDemog(customerId, mobileNumber, dob, pan) {
   return fetchAPI('/fc-fetch-cust-demog', 'POST', { customerId, mobileNumber, dob, pan });
 }
 
@@ -209,7 +213,7 @@ async function fcFetchCustDemog(customerId, mobileNumber, dob, pan) {
  * @param {string} dob - Date of birth (optional)
  * @returns {Promise<Object>} - Customer identification response
  */
-async function genericCustomerIdentification(mobileNumber, pan, dob) {
+function genericCustomerIdentification(mobileNumber, pan, dob) {
   return fetchAPI('/generic-customer-identification', 'POST', { mobileNumber, pan, dob });
 }
 
@@ -218,7 +222,7 @@ async function genericCustomerIdentification(mobileNumber, pan, dob) {
  * @param {string} mobileNumber - Mobile number to send OTP
  * @returns {Promise<Object>} - OTP generation response
  */
-async function otpGenerationService(mobileNumber) {
+function otpGenerationService(mobileNumber) {
   return fetchAPI('/otp-generation-service', 'POST', { mobileNumber });
 }
 
@@ -228,7 +232,7 @@ async function otpGenerationService(mobileNumber) {
  * @param {string} otp - OTP entered by user
  * @returns {Promise<Object>} - OTP validation response
  */
-async function otpValidationService(referenceId, otp) {
+function otpValidationService(referenceId, otp) {
   return fetchAPI('/otp-validation-service', 'POST', { referenceId, otp });
 }
 
@@ -241,7 +245,7 @@ async function otpValidationService(referenceId, otp) {
  * @param {string} companyType - Company type (optional)
  * @returns {Promise<Object>} - AML update response
  */
-async function fcAmlUpdation(customerId, token, occupation, incomeRange, companyType) {
+function fcAmlUpdation(customerId, token, occupation, incomeRange, companyType) {
   return fetchAPI('/fc-aml-updation', 'POST', { customerId, token, occupation, incomeRange, companyType });
 }
 
@@ -252,7 +256,7 @@ async function fcAmlUpdation(customerId, token, occupation, incomeRange, company
  * @param {string} branchCode - Branch code
  * @returns {Promise<Object>} - Lead creation response
  */
-async function accOpeningLeadCreate(customerId, productCode, branchCode) {
+function accOpeningLeadCreate(customerId, productCode, branchCode) {
   return fetchAPI('/accopening-leadcreate', 'POST', { customerId, productCode, branchCode });
 }
 
@@ -262,7 +266,7 @@ async function accOpeningLeadCreate(customerId, productCode, branchCode) {
  * @param {string} mobileNumber - Mobile number
  * @returns {Promise<Object>} - Customer details response
  */
-async function fetchCustAcctAmlFatca(token, mobileNumber) {
+function fetchCustAcctAmlFatca(token, mobileNumber) {
   return fetchAPI('/fetch-custacct-amlfatca', 'POST', { token, mobileNumber });
 }
 
