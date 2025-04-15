@@ -39,7 +39,7 @@ const API_BASE_URL = 'http://bumblebee:3000/api';
  * @param {string} endpoint - API endpoint
  * @param {string} method - HTTP method (GET, POST, etc.)
  * @param {Object} body - Request body for POST requests
- * @returns {Promise<Object>} - API response
+ * @returns {Object} - API response
  */
 function fetchAPI(endpoint, method = 'GET', body = null) {
   try {
@@ -68,7 +68,11 @@ function fetchAPI(endpoint, method = 'GET', body = null) {
 
 /**
  * Generates access token for API authentication
- * @returns {Promise<Object>} - Authentication response with access token
+ * @returns {Object} - Response containing:
+ *   @returns {string} access_token - The authentication token
+ *   @returns {string} token_type - Type of token (e.g., "Bearer")
+ *   @returns {number} expires_in - Token expiration time in seconds
+ *   @returns {string} scope - Token scope
  */
 function oauthProxy() {
   return fetchAPI('/oauth-proxy', 'POST');
@@ -77,7 +81,11 @@ function oauthProxy() {
 /**
  * Generates OTP for mobile verification
  * @param {string} mobileNumber - Mobile number to send OTP
- * @returns {Promise<Object>} - OTP generation response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} message - Response message
+ *   @returns {string} referenceId - Reference ID for OTP validation
+ *   @returns {number} otpExpiry - OTP expiry time in seconds
  */
 function otpGeneration(mobileNumber) {
   return fetchAPI('/otp-generation', 'POST', { mobileNumber });
@@ -87,7 +95,10 @@ function otpGeneration(mobileNumber) {
  * Validates OTP sent to mobile
  * @param {string} referenceId - Reference ID from OTP generation
  * @param {string} otp - OTP entered by user
- * @returns {Promise<Object>} - OTP validation response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} message - Response message
+ *   @returns {string} token - Authentication token on successful validation
  */
 function otpValidation(referenceId, otp) {
   return fetchAPI('/otp-validation', 'POST', { referenceId, otp });
@@ -99,7 +110,10 @@ function otpValidation(referenceId, otp) {
  * @param {string} dob - Date of birth
  * @param {string} pan - PAN number
  * @param {string} entityType - Type of entity
- * @returns {Promise<Object>} - Factiva input response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} message - Response message
+ *   @returns {string} requestId - ID for tracking the Factiva check request
  */
 function factivaInput(name, dob, pan, entityType) {
   return fetchAPI('/factiva-input', 'POST', { name, dob, pan, entityType });
@@ -108,7 +122,11 @@ function factivaInput(name, dob, pan, entityType) {
 /**
  * Get results of Factiva check
  * @param {string} requestId - Request ID from Factiva input
- * @returns {Promise<Object>} - Factiva output response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} requestId - The input request ID
+ *   @returns {boolean} matchFound - Whether a match was found in Factiva
+ *   @returns {number} matchScore - Score indicating match confidence
  */
 function factivaOutput(requestId) {
   return fetchAPI(`/factiva-output?requestId=${requestId}`);
@@ -117,7 +135,12 @@ function factivaOutput(requestId) {
 /**
  * Verify PAN details
  * @param {string} pan - PAN number to verify
- * @returns {Promise<Object>} - PAN verification response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} pan - PAN number
+ *   @returns {string} name - Name as per PAN records
+ *   @returns {string} dob - Date of birth as per PAN records
+ *   @returns {boolean} verified - Whether PAN is verified
  */
 function panVerification(pan) {
   return fetchAPI('/pan-verification', 'POST', { pan });
@@ -128,7 +151,14 @@ function panVerification(pan) {
  * @param {string} mobileNumber - Customer mobile number
  * @param {string} pan - PAN number (optional)
  * @param {string} dob - Date of birth (optional)
- * @returns {Promise<Object>} - Account details response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} customerType - Customer type ("NTB" or "ETB")
+ *   @returns {string} customerId - Customer ID
+ *   @returns {Array<Object>} accounts - List of accounts:
+ *     @returns {string} accountNumber - Account number
+ *     @returns {string} accountType - Type of account
+ *     @returns {string} status - Account status
  */
 function fetchCasaDetails(mobileNumber, pan, dob) {
   return fetchAPI('/fetch-casa-details', 'POST', { mobileNumber, pan, dob });
@@ -138,7 +168,11 @@ function fetchCasaDetails(mobileNumber, pan, dob) {
  * Match names from different ID proofs
  * @param {string} panName - Name from PAN
  * @param {string} aadhaarName - Name from Aadhaar
- * @returns {Promise<Object>} - Name match results
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {number} matchPercentage - Percentage match between names
+ *   @returns {number} threshold - Threshold percentage for match approval
+ *   @returns {boolean} passed - Whether the name match passed the threshold
  */
 function posidexNameMatch(panName, aadhaarName) {
   return fetchAPI('/posidex-name-match', 'POST', { panName, aadhaarName });
@@ -149,7 +183,12 @@ function posidexNameMatch(panName, aadhaarName) {
  * @param {string} pan - PAN number
  * @param {string} name - Customer name
  * @param {string} dob - Date of birth
- * @returns {Promise<Object>} - Credit bureau results
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} bureauSource - Source of credit bureau data
+ *   @returns {number} creditScore - Credit score from bureau
+ *   @returns {string} reportDate - Date of credit report
+ *   @returns {boolean} eligibility - Whether customer is eligible based on credit score
  */
 function multibureauService(pan, name, dob) {
   return fetchAPI('/multibureau-service', 'POST', { pan, name, dob });
@@ -161,7 +200,10 @@ function multibureauService(pan, name, dob) {
  * @param {string} mobileNumber - Mobile number
  * @param {string} pan - PAN number (optional)
  * @param {string} productCode - Product code
- * @returns {Promise<Object>} - Lead creation response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} leadId - Generated lead ID
+ *   @returns {string} message - Response message
  */
 function crmSave(customerName, mobileNumber, productCode, pan) {
   return fetchAPI('/crm-save', 'POST', { customerName, mobileNumber, productCode, pan });
@@ -176,7 +218,13 @@ function crmSave(customerName, mobileNumber, productCode, pan) {
  * @param {string} productCode - Product code
  * @param {string} leadId - Lead ID from CRM
  * @param {string} token - Authentication token (optional)
- * @returns {Promise<Object>} - Account opening response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} customerId - Customer ID
+ *   @returns {string} accountNumber - Created account number
+ *   @returns {string} ifscCode - IFSC code for the account
+ *   @returns {string} branchCode - Branch code
+ *   @returns {string} message - Response message
  */
 function accountOpening(customerName, mobileNumber, pan, aadhaar, productCode, leadId, token) {
   return fetchAPI('/account-opening', 'POST', { customerName, mobileNumber, pan, aadhaar, productCode, leadId, token });
@@ -188,7 +236,12 @@ function accountOpening(customerName, mobileNumber, pan, aadhaar, productCode, l
  * @param {string} productCode - Product code
  * @param {string} token - Authentication token
  * @param {string} branchCode - Branch code
- * @returns {Promise<Object>} - ETB account opening response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} customerId - Customer ID
+ *   @returns {string} accountNumber - Created account number
+ *   @returns {string} ifscCode - IFSC code for the account
+ *   @returns {string} message - Response message
  */
 function etbAccountOpening(customerId, productCode, token, branchCode) {
   return fetchAPI('/etb-account-opening', 'POST', { customerId, productCode, token, branchCode });
@@ -200,7 +253,21 @@ function etbAccountOpening(customerId, productCode, token, branchCode) {
  * @param {string} mobileNumber - Mobile number (optional)
  * @param {string} dob - Date of birth (optional)
  * @param {string} pan - PAN number (optional)
- * @returns {Promise<Object>} - Customer details response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} customerId - Customer ID
+ *   @returns {string} name - Customer name
+ *   @returns {string} mobileNumber - Mobile number
+ *   @returns {string} dob - Date of birth
+ *   @returns {string} pan - PAN number
+ *   @returns {string} email - Email address
+ *   @returns {Object} address - Customer address:
+ *     @returns {string} line1 - Address line 1
+ *     @returns {string} line2 - Address line 2
+ *     @returns {string} city - City
+ *     @returns {string} state - State
+ *     @returns {string} pincode - PIN code
+ *   @returns {string} token - Authentication token
  */
 function fcFetchCustDemog(customerId, mobileNumber, dob, pan) {
   return fetchAPI('/fc-fetch-cust-demog', 'POST', { customerId, mobileNumber, dob, pan });
@@ -211,7 +278,11 @@ function fcFetchCustDemog(customerId, mobileNumber, dob, pan) {
  * @param {string} mobileNumber - Mobile number
  * @param {string} pan - PAN number (optional)
  * @param {string} dob - Date of birth (optional)
- * @returns {Promise<Object>} - Customer identification response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} customerType - Customer type ("ETB" or "NTB")
+ *   @returns {string} customerId - Customer ID (for ETB customers)
+ *   @returns {string} message - Response message
  */
 function genericCustomerIdentification(mobileNumber, pan, dob) {
   return fetchAPI('/generic-customer-identification', 'POST', { mobileNumber, pan, dob });
@@ -220,7 +291,11 @@ function genericCustomerIdentification(mobileNumber, pan, dob) {
 /**
  * Generates OTP for mobile verification (alternative service)
  * @param {string} mobileNumber - Mobile number to send OTP
- * @returns {Promise<Object>} - OTP generation response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} message - Response message
+ *   @returns {string} referenceId - Reference ID for OTP validation
+ *   @returns {number} otpExpiry - OTP expiry time in seconds
  */
 function otpGenerationService(mobileNumber) {
   return fetchAPI('/otp-generation-service', 'POST', { mobileNumber });
@@ -230,7 +305,10 @@ function otpGenerationService(mobileNumber) {
  * Validates OTP sent to mobile (alternative service)
  * @param {string} referenceId - Reference ID from OTP generation
  * @param {string} otp - OTP entered by user
- * @returns {Promise<Object>} - OTP validation response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} message - Response message
+ *   @returns {string} token - Authentication token on successful validation
  */
 function otpValidationService(referenceId, otp) {
   return fetchAPI('/otp-validation-service', 'POST', { referenceId, otp });
@@ -243,7 +321,10 @@ function otpValidationService(referenceId, otp) {
  * @param {string} occupation - Customer occupation
  * @param {string} incomeRange - Income range
  * @param {string} companyType - Company type (optional)
- * @returns {Promise<Object>} - AML update response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} customerId - Customer ID
+ *   @returns {string} message - Response message
  */
 function fcAmlUpdation(customerId, token, occupation, incomeRange, companyType) {
   return fetchAPI('/fc-aml-updation', 'POST', { customerId, token, occupation, incomeRange, companyType });
@@ -254,7 +335,11 @@ function fcAmlUpdation(customerId, token, occupation, incomeRange, companyType) 
  * @param {string} customerId - Customer ID
  * @param {string} productCode - Product code
  * @param {string} branchCode - Branch code
- * @returns {Promise<Object>} - Lead creation response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} leadId - Generated lead ID
+ *   @returns {string} customerId - Customer ID
+ *   @returns {string} message - Response message
  */
 function accOpeningLeadCreate(customerId, productCode, branchCode) {
   return fetchAPI('/accopening-leadcreate', 'POST', { customerId, productCode, branchCode });
@@ -264,7 +349,16 @@ function accOpeningLeadCreate(customerId, productCode, branchCode) {
  * Fetch customer account, AML and FATCA details
  * @param {string} token - Authentication token
  * @param {string} mobileNumber - Mobile number
- * @returns {Promise<Object>} - Customer details response
+ * @returns {Object} - Response containing:
+ *   @returns {string} status - Status of the request ("SUCCESS" or "FAILURE")
+ *   @returns {string} customerId - Customer ID
+ *   @returns {string} name - Customer name
+ *   @returns {string} mobileNumber - Mobile number
+ *   @returns {Array<Object>} accounts - List of accounts:
+ *     @returns {string} accountNumber - Account number
+ *     @returns {string} accountType - Type of account
+ *     @returns {string} status - Account status
+ *   @returns {string} token - Authentication token
  */
 function fetchCustAcctAmlFatca(token, mobileNumber) {
   return fetchAPI('/fetch-custacct-amlfatca', 'POST', { token, mobileNumber });
