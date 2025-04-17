@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: https://author-p21002-e1571066.adobeaemcloud.com/bin/franklin.delivery/jalagari/demo/main
+    url: https://author-p21002-e1571066.adobeaemcloud.com/bin/franklin.delivery/navneet-ag/aemforms-boilerplate/main
     type: "markup"
     suffix: ".html"
